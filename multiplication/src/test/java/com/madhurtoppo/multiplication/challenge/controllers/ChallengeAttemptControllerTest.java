@@ -32,12 +32,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class ChallengeAttemptControllerTest {
 
     @MockBean private ChallengeService challengeService;
-
     @Autowired private MockMvc mvc;
     @Autowired private JacksonTester<ChallengeAttemptDTO> jsonRequestAttempt;
     @Autowired private JacksonTester<ChallengeAttempt> jsonResultAttempt;
     @Autowired private JacksonTester<List<ChallengeAttempt>> jsonResultAttemptList;
-
 
     @Test
     void postValidResult() throws Exception {

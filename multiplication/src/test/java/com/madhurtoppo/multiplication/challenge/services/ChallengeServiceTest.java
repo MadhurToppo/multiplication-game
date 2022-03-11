@@ -5,7 +5,7 @@ import com.madhurtoppo.multiplication.challenge.domain.ChallengeAttempt;
 import com.madhurtoppo.multiplication.challenge.domain.ChallengeAttemptDTO;
 import com.madhurtoppo.multiplication.challenge.repositories.ChallengeAttemptRepository;
 import com.madhurtoppo.multiplication.challenge.repositories.ChallengeRepository;
-import com.madhurtoppo.multiplication.serviceclients.GamificationServiceClient;
+import com.madhurtoppo.multiplication.serviceclients.ChallengeEventPub;
 import com.madhurtoppo.multiplication.user.User;
 import com.madhurtoppo.multiplication.user.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,30 +32,32 @@ class ChallengeServiceTest {
     @Mock private UserRepository userRepository;
     @Mock private ChallengeAttemptRepository attemptRepository;
     @Mock private ChallengeRepository challengeRepository;
-    @Mock private GamificationServiceClient gamificationServiceClient;
+    @Mock private ChallengeEventPub challengeEventPub;
 
     @BeforeEach
     void setUp() {
         challengeService = new ChallengeServiceImpl(userRepository,
                                                     challengeRepository,
                                                     attemptRepository,
-                                                    gamificationServiceClient);
+                                                    challengeEventPub);
     }
 
     @Test
     void checkCorrectAttemptTest() {
         // given
         given(attemptRepository.save(any())).will(returnsFirstArg());
+        given(challengeRepository.save(any())).will(returnsFirstArg());
         ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, "Madhur Toppo", 3000);
+        Challenge challenge = new Challenge(attemptDTO.getFactorA(), attemptDTO.getFactorB());
 
         // when
         ChallengeAttempt resultAttempt = challengeService.verifyAttempt(attemptDTO);
 
         // then
         then(resultAttempt.isCorrect()).isTrue();
-        verify(userRepository).save(new User("Madhur Toppo"));
+        verify(userRepository).save(new User(attemptDTO.getUserAlias()));
         verify(attemptRepository).save(resultAttempt);
-        verify(gamificationServiceClient).sendAttempt(resultAttempt);
+        verify(challengeEventPub).challengeSolved(resultAttempt, challenge);
     }
 
     @Test
@@ -74,10 +76,10 @@ class ChallengeServiceTest {
     @Test
     void checkExistingUserTest() {
         // given
-        given(attemptRepository.save(any())).will(returnsFirstArg());
         User existingUser = new User(1L, "john_doe");
-        given(userRepository.findByAlias("john_doe")).willReturn(Optional.of(existingUser));
-        ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, "john_doe", 5000);
+        given(attemptRepository.save(any())).will(returnsFirstArg());
+        given(userRepository.findByAlias(existingUser.getAlias())).willReturn(Optional.of(existingUser));
+        ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, existingUser.getAlias(), 5000);
 
         // when
         ChallengeAttempt resultAttempt = challengeService.verifyAttempt(attemptDTO);
@@ -98,10 +100,10 @@ class ChallengeServiceTest {
         ChallengeAttempt attempt1 = new ChallengeAttempt(1L, user, challenge1, 3010, false);
         ChallengeAttempt attempt2 = new ChallengeAttempt(2L, user, challenge2, 3051, false);
         List<ChallengeAttempt> lastAttempts = List.of(attempt1, attempt2);
-        given(attemptRepository.findTop10ByUserAliasOrderByIdDesc("john_doe")).willReturn(lastAttempts);
+        given(attemptRepository.findTop10ByUserAliasOrderByIdDesc(user.getAlias())).willReturn(lastAttempts);
 
         // when
-        List<ChallengeAttempt> latestAttemptsResult = challengeService.getStatsForUser("john_doe");
+        List<ChallengeAttempt> latestAttemptsResult = challengeService.getStatsForUser(user.getAlias());
 
         // then
         then(latestAttemptsResult).isEqualTo(lastAttempts);
