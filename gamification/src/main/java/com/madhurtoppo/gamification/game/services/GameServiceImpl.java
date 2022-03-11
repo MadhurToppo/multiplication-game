@@ -3,7 +3,7 @@ package com.madhurtoppo.gamification.game.services;
 import com.madhurtoppo.gamification.game.badgeprocessors.BadgeProcessor;
 import com.madhurtoppo.gamification.game.domain.BadgeCard;
 import com.madhurtoppo.gamification.game.domain.BadgeType;
-import com.madhurtoppo.gamification.game.domain.ChallengeSolvedDTO;
+import com.madhurtoppo.gamification.game.domain.ChallengeSolvedEvent;
 import com.madhurtoppo.gamification.game.domain.ScoreCard;
 import com.madhurtoppo.gamification.game.repositories.BadgeRepository;
 import com.madhurtoppo.gamification.game.repositories.ScoreRepository;
@@ -27,7 +27,7 @@ public class GameServiceImpl implements GameService {
     private final List<BadgeProcessor> badgeProcessors;
 
     @Override
-    public GameResult newAttemptForUser(ChallengeSolvedDTO challenge) {
+    public GameResult newAttemptForUser(final ChallengeSolvedEvent challenge) {
 
         // We give points only if it's correct
         if (challenge.isCorrect()) {
@@ -51,7 +51,7 @@ public class GameServiceImpl implements GameService {
     /**
      * Checks the total score and the different scorecard obtained * to give new badges in case their conditions are met.
      */
-    private List<BadgeCard> processForBadges(final ChallengeSolvedDTO solvedChallenge) {
+    private List<BadgeCard> processForBadges(final ChallengeSolvedEvent solvedChallenge) {
         Optional<Integer> optTotalScore = scoreRepository.getTotalScoreForUser(solvedChallenge.getUserId());
         if (optTotalScore.isEmpty()) {
             return Collections.emptyList();

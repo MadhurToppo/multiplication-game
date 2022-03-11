@@ -1,7 +1,7 @@
 package com.madhurtoppo.gamification.game.services;
 
 import com.madhurtoppo.gamification.game.domain.BadgeType;
-import com.madhurtoppo.gamification.game.domain.ChallengeSolvedDTO;
+import com.madhurtoppo.gamification.game.domain.ChallengeSolvedEvent;
 import lombok.Value;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public interface GameService {
      * @param challenge the challenge data with user details, factors, etc.
      * @return a {@link GameResult} object containing score and badges
      */
-    GameResult newAttemptForUser(ChallengeSolvedDTO challenge);
+    GameResult newAttemptForUser(ChallengeSolvedEvent challenge);
 
     @Value
     class GameResult {

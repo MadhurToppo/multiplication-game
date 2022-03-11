@@ -1,7 +1,7 @@
 package com.madhurtoppo.gamification.game.badgeprocessors;
 
 import com.madhurtoppo.gamification.game.domain.BadgeType;
-import com.madhurtoppo.gamification.game.domain.ChallengeSolvedDTO;
+import com.madhurtoppo.gamification.game.domain.ChallengeSolvedEvent;
 import com.madhurtoppo.gamification.game.domain.ScoreCard;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class BadgeProcessorImpl implements BadgeProcessor {
     @Override
     public Optional<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards,
-                                                       ChallengeSolvedDTO solvedDTO)
+                                                       ChallengeSolvedEvent solvedDTO)
     {
         return currentScore > 50 ? Optional.of(BadgeType.BRONZE) : Optional.empty();
     }
