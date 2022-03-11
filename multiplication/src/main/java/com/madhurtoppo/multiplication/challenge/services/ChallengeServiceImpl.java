@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -24,6 +25,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     private final ChallengeAttemptRepository attemptRepository;
     private final ChallengeEventPub challengeEventPub;
 
+    @Transactional
     @Override
     public ChallengeAttempt verifyAttempt(ChallengeAttemptDTO attemptDTO) {
         User user = userRepository.findByAlias(attemptDTO.getUserAlias()).orElseGet(() -> {
