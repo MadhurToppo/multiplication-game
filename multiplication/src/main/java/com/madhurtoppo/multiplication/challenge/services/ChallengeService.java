@@ -1,6 +1,5 @@
 package com.madhurtoppo.multiplication.challenge.services;
 
-//import com.madhurtoppo.multiplication.challenge.dto.ChallengeAttemptDTO;
 import com.madhurtoppo.multiplication.challenge.domain.ChallengeAttempt;
 import com.madhurtoppo.multiplication.challenge.domain.ChallengeAttemptDTO;
 

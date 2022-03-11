@@ -1,14 +1,11 @@
 package com.madhurtoppo.multiplication.challenge.services;
 
-//import com.madhurtoppo.multiplication.challenge.dto.ChallengeAttemptDTO;
-
 import com.madhurtoppo.multiplication.challenge.domain.Challenge;
 import com.madhurtoppo.multiplication.challenge.domain.ChallengeAttempt;
 import com.madhurtoppo.multiplication.challenge.domain.ChallengeAttemptDTO;
 import com.madhurtoppo.multiplication.challenge.repositories.ChallengeAttemptRepository;
 import com.madhurtoppo.multiplication.challenge.repositories.ChallengeRepository;
 import com.madhurtoppo.multiplication.serviceclients.ChallengeEventPub;
-//import com.madhurtoppo.multiplication.serviceclients.GamificationServiceClient;
 import com.madhurtoppo.multiplication.user.User;
 import com.madhurtoppo.multiplication.user.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +22,6 @@ public class ChallengeServiceImpl implements ChallengeService {
     private final UserRepository userRepository;
     private final ChallengeRepository challengeRepository;
     private final ChallengeAttemptRepository attemptRepository;
-//    private final GamificationServiceClient gamificationServiceClient;
     private final ChallengeEventPub challengeEventPub;
 
     @Override
@@ -39,7 +35,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 
         ChallengeAttempt attempt = new ChallengeAttempt(null, user, challenge, attemptDTO.getGuess(), isCorrect);
         ChallengeAttempt storedAttempt = attemptRepository.save(attempt);
-//        gamificationServiceClient.sendAttempt(storedAttempt);
         challengeEventPub.challengeSolved(storedAttempt, challenge);
 
         return storedAttempt;
