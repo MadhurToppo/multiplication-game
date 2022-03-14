@@ -8,17 +8,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gamification" />
+        <module name="gateway" />
         <module name="multiplication" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="gamification" target="11" />
+      <module name="gateway" target="11" />
       <module name="multiplication" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="gamification" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="multiplication" options="-parameters" />
     </option>
   </component>

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Archetypes.Configuration">
+    <option name="archetypesFileLocation" value="archetypes.xml" />
     <option name="workingDirectory" value="" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="FLOW" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/gamification/pom.xml" />
         <option value="$PROJECT_DIR$/multiplication/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </list>
     </option>
   </component>
