@@ -1,8 +1,6 @@
 
 ê
 `multiplication/src/main/java/com/madhurtoppo/multiplication/user/controllers/UserController.java,d/8/d8bbdb91e2cd713be7d392251967c7d31f444cde
-F
-multiplication/pom.xml,0/8/08cf2333d8b9f13429142f2d913479b13f1750fc
 ô
 imultiplication/src/main/java/com/madhurtoppo/multiplication/serviceclients/GamificationServiceClient.java,3/6/367bcdb32d0470b3ea08676b818a444826818cad
 è
@@ -14,10 +12,6 @@ G
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 ê
 `gamification/src/main/java/com/madhurtoppo/gamification/game/eventhandlers/GameEventHandler.java,8/f/8ff18a46420713b0b8da63609add091bba4e3a33
-Ñ
-Tgamification/src/main/java/com/madhurtoppo/gamification/GamificationApplication.java,0/3/03de4725f49f845238b42c78919a8cee5d3e1380
-å
-\gamification/src/main/java/com/madhurtoppo/gamification/configuration/AMQPConfiguration.java,2/2/22d5f2cbd2c636caab9ce34a4a1a7be7407827e3
 ç
 ]gamification/src/main/java/com/madhurtoppo/gamification/game/domain/ChallengeSolvedEvent.java,4/4/44c6769f94ca3568667b9822036d6a3374eed8c9
 á
@@ -42,8 +36,6 @@ hmultiplication/src/test/java/com/madhurtoppo/multiplication/challenge/services/
 emultiplication/src/test/java/com/madhurtoppo/multiplication/serviceclients/ChallengeEventPubTest.java,8/4/84aa9a964c078717c73ef7ebdf3bdf3254f2404f
 î
 dmultiplication/src/test/java/com/madhurtoppo/multiplication/user/controllers/UserControllerTest.java,7/6/7693f57bb0fbea2ca5a86e45197e47aa4c7b96cf
-D
-gamification/pom.xml,e/2/e29245538c79762977485f8052fbb86ce2e97a14
 ù
 mmultiplication/src/main/java/com/madhurtoppo/multiplication/challenge/services/ChallengeGeneratorService.java,1/f/1f9c10d77a37d446769c0854dbc641f96f7194a2
 î
