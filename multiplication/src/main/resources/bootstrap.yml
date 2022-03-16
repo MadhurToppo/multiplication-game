@@ -10,6 +10,3 @@ spring:
         watch:
           enabled: true
         fail-fast: false
-#logging:
-#  level:
-#    org.springframework.amqp.rabbit.connection.CachingConnectionFactory: WARN
