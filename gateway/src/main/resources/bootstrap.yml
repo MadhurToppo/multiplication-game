@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    consul:
+      config:
+        prefixes: config
+        default-context: defaults
+        format: yaml
+        data-key: application.yml
+        enabled: true
+        watch:
+          enabled: true
+        fail-fast: false

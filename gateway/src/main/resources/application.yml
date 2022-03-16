@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: gateway
+  config:
+    import: consul
+    use-legacy-processing: true
   cloud:
     loadbalancer:
       ribbon:
